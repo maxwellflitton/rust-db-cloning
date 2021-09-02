@@ -16,9 +16,9 @@ use schema::fib_entries;
 
 
 #[pyfunction]
-fn get_fib_enteries(py: Python) -> Vec<&PyDict> {
+fn get_fib_enteries(url: String, py: Python) -> Vec<&PyDict> {
 
-   let connection = establish_connection();  
+   let connection = establish_connection(url);  
 
    let fib_enteries = fib_entries::table
        .order(fib_entries::columns::input_number.asc())
