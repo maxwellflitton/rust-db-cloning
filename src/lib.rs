@@ -52,7 +52,7 @@ fn get_fib_enteries(py: Python) -> Vec<&PyDict> {
 }
 
 #[pymodule]
-fn flitton_oasis_risk_modelling(_py: Python, m: &PyModule) -> PyResult<()> {
+fn rust_db_cloning(_py: Python, m: &PyModule) -> PyResult<()> {
     m.add_wrapped(wrap_pyfunction!(get_fib_enteries));
     Ok(())
 }
