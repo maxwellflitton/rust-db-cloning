@@ -1,3 +1,7 @@
+#[macro_use] extern crate diesel;
+extern crate dotenv;
+use diesel::prelude::*;
+
 use pyo3::prelude::*;
 use pyo3::wrap_pyfunction;
 use pyo3::types::PyDict;
@@ -25,8 +29,8 @@ fn get_fib_enteries(py: Python) -> Vec<&PyDict> {
 
    for i in fib_enteries {
        let placeholder = PyDict::new(py);
-       placeholder.set_item("input number", i.input_number);
-       placeholder.set_item("fib number", i.calculated_number);
+       placeholder.set_item("input number", i.input_number.unwrap());
+       placeholder.set_item("fib number", i.calculated_number.unwrap());
        buffer.push(placeholder);
    }
    return buffer
