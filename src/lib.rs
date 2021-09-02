@@ -11,25 +11,6 @@ use models::FibEntry;
 use schema::fib_entries;
 
 
-pub fn return_state(user_id: &i32) -> ToDoItems {
-    let connection = establish_connection();
-
-    let items = to_do::table
-        .order(to_do::columns::id.asc())
-        .filter(to_do::columns::user_id.eq(&user_id))
-        .load::<Item>(&connection)
-        .unwrap();
-
-    let mut array_buffer = Vec::new();
-
-    for item in items {
-        let item = to_do_factory(&item.status, item.title).unwrap();
-        array_buffer.push(item);
-    }
-    return ToDoItems::new(array_buffer);
-}
-
-
 #[pyfunction]
 fn get_fib_enteries(py: Python) -> Vec<&PyDict> {
 
